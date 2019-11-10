@@ -10,4 +10,6 @@ public interface InvoiceService {
 	public void delete(int id);
 	
 	public Invoice find(int id);
+	
+	public Iterable<Invoice> search(String keyword, String year, String month);
 }

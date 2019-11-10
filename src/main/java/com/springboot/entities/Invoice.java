@@ -11,11 +11,13 @@ import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "invoice")
+@Document(collection = "invoice")
 public class Invoice {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +27,7 @@ public class Invoice {
 	private String status;
 	@CreatedDate
 	@Column(name="createdDate")
-	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSS")
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date createdDate;
 	
 	public Invoice() {

@@ -32,6 +32,18 @@ public class InvoiceRestController {
 
 	}
 	
+	@RequestMapping(value = "search/{keyword}/{year}/{month}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Iterable<Invoice>> search(@PathVariable("keyword") String keyword,@PathVariable("year") String year,@PathVariable("month") String month) {
+		try {
+			System.out.println("-------------- " + invoiceService.search(keyword,year,month));
+			return new ResponseEntity<Iterable<Invoice>>(invoiceService.search(keyword,year,month), HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+			return new ResponseEntity<Iterable<Invoice>>(HttpStatus.BAD_REQUEST);
+		}
+
+	}
+	
 	@RequestMapping(value = "find/{id}", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Invoice> find(@PathVariable("id") int id) {
 		try {
